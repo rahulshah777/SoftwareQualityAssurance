@@ -21,7 +21,7 @@ steps:
     script: |
       echo "Running ZipfAnalysis on sample Wikipedia dataset..."
       if [ ! -f data/wiki-sample.txt ]; then
-        echo "ERROR: data/wiki-sample.txt not found. Please add the sample dataset."
+        echo "ERROR: data/wiki-sample.txt not found."
         exit 1
       fi
       java -cp out ZipfAnalysis data/wiki-sample.txt
