@@ -1,0 +1,61 @@
+name: Run Analysis
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Run every Sunday at 00:00 UTC
+    - cron: '0 0 * * 0'
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'sample_wiki.xml'
+      - 'src/**'
+      - 'pom.xml'
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up JDK 18
+      uses: actions/setup-java@v3
+      with:
+        java-version: '18'
+        distribution: 'temurin'
+        cache: 'maven'
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    
+    - name: Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt || echo "No requirements.txt found, skipping"
+    
+    - name: Build with Maven
+      run: mvn -B clean package
+    
+    - name: Run Wikipedia analysis
+      run: |
+        mkdir -p analysis_results
+        python process_wiki_dump.py sample_wiki.xml analysis_results
+    
+    - name: Upload analysis results
+      uses: actions/upload-artifact@v3
+      with:
+        name: analysis-results
+        path: |
+          analysis_results/word_frequencies.png
+          analysis_results/zipf_analysis.txt
+        retention-days: 30
+    
+    - name: Upload JAR artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: word-frequency-analyzer
+        path: target/*-with-dependencies.jar
+        retention-days: 30

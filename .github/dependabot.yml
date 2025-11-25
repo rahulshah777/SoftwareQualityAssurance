@@ -1,0 +1,37 @@
+version: 2
+updates:
+  # Enable version updates for Maven
+  - package-ecosystem: "maven"
+    # Look for `pom.xml` in the `root` directory
+    directory: "/"
+    # Check for updates once a week
+    schedule:
+      interval: "weekly"
+    # Apply labels to any pull requests raised
+    labels:
+      - "dependencies"
+    # Assign PRs to the user who created the repository
+    assignees:
+      - "@me"
+    # Add reviewers to PRs
+    reviewers:
+      - "@me"
+    # Set a custom commit message prefix for Dependabot PRs
+    commit-message:
+      prefix: "chore(deps)"
+      include: "scope"
+
+  # Enable version updates for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "github-actions"
+      - "dependencies"
+    assignees:
+      - "@me"
+    reviewers:
+      - "@me"
+    commit-message:
+      prefix: "chore(gha)"

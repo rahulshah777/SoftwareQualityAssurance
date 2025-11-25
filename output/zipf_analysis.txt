@@ -1,0 +1,10 @@
+Zipf's Law Analysis
+==================
+- Number of unique words analyzed: 116
+- Slope (should be close to -1 for perfect Zipf's law): -0.5403
+- Intercept: 2.3744
+- R² (goodness of fit, 1.0 is perfect): 0.8983
+
+Interpretation:
+- A slope close to -1 suggests the distribution follows Zipf's law.
+- The higher the R² value (closer to 1.0), the better the fit to a power law.

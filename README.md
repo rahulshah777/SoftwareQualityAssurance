@@ -1,5 +1,10 @@
 # Word Frequency Analysis and Zipf's Law Verification
 
+[![Java CI](https://github.com/yourusername/SoftwareQualityAssuranceSE/actions/workflows/ci.yml/badge.svg)](https://github.com/yourusername/SoftwareQualityAssuranceSE/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/yourusername/SoftwareQualityAssuranceSE/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/yourusername/SoftwareQualityAssuranceSE/actions/workflows/codeql-analysis.yml)
+[![Code Quality](https://github.com/yourusername/SoftwareQualityAssuranceSE/actions/workflows/code-quality.yml/badge.svg)](https://github.com/yourusername/SoftwareQualityAssuranceSE/actions/workflows/code-quality.yml)
+[![Analysis](https://github.com/yourusername/SoftwareQualityAssuranceSE/actions/workflows/analyze.yml/badge.svg)](https://github.com/yourusername/SoftwareQualityAssuranceSE/actions/workflows/analyze.yml)
+
 This Java application analyzes text documents to count word frequencies, visualize the distribution, and verify if the word frequencies follow Zipf's law. The project includes an Azure Pipeline for continuous integration and testing.
 
 ## Features
@@ -49,16 +54,48 @@ java -jar target/SoftwareQualityAssuranceSE-1.0-SNAPSHOT-jar-with-dependencies.j
 python process_wiki_dump.py path/to/wikipedia_dump.xml output
 ```
 
+### CI/CD Pipelines
+
+### GitHub Actions
+
+The project includes several GitHub Actions workflows:
+
+1. **CI Pipeline** (`ci.yml`):
+   - Runs on push and pull requests
+   - Tests on multiple OS and Java versions
+   - Builds the project and runs tests
+   - Uploads test results and artifacts
+
+2. **Code Quality** (`code-quality.yml`):
+   - Runs Checkstyle, PMD, and SpotBugs
+   - Enforces code quality standards
+   - Uploads reports as artifacts
+
+3. **Security Analysis** (`codeql-analysis.yml`):
+   - Performs static code analysis with CodeQL
+   - Identifies security vulnerabilities
+   - Runs on a weekly schedule and on push/PR
+
+4. **Wikipedia Analysis** (`analyze.yml`):
+   - Processes the sample Wikipedia dump
+   - Generates word frequency analysis
+   - Runs weekly and on demand
+
 ### Azure Pipeline
 
-The project includes an `azure-pipelines.yml` file that defines a CI/CD pipeline with the following stages:
-1. **Build**: Compiles the code and runs tests
-2. **Analyze**: Processes a sample Wikipedia dump and generates analysis
-
-To set up the pipeline:
+Alternatively, you can use the provided `azure-pipelines.yml` file for Azure DevOps:
 1. Push the code to an Azure DevOps repository
 2. Create a new pipeline and select the `azure-pipelines.yml` file
 3. Run the pipeline
+
+## Dependabot
+
+Dependabot is configured to:
+- Check for dependency updates weekly
+- Automatically create pull requests for updates
+- Apply appropriate labels and reviewers
+
+To update dependencies manually, check the Dependabot section in your GitHub repository's "Security" tab.
 
 ## Output Files
 
