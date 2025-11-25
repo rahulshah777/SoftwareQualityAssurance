@@ -1,0 +1,5 @@
+This is a sample text file to test the word frequency counter.
+It contains several words, some of which are repeated multiple times.
+The quick brown fox jumps over the lazy dog. The quick brown fox is quick.
+This is a test. This is only a test. Testing, testing, 1, 2, 3.
+Word frequency analysis is an interesting topic in computational linguistics.
